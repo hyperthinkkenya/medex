@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<template id="test_template">
+    <h2>This is the simulate test view</h2>
+</template>
+
+</odoo>

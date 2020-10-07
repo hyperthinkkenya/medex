@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_odoo_mpesa_record,access.odoo_mpesa.record,model_odoo_mpesa_record,,1,0,0,0
+access_odoo_mpesa_configuration,access.odoo_mpesa.configuration,model_odoo_mpesa_configuration,,1,1,1,1

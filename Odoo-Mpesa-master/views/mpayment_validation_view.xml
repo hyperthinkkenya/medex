@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+        <template id="point_of_sale_assets_ext" inherit_id="point_of_sale.assets">
+                <xpath expr="." position="inside">
+                        <link rel="stylesheet" href="/odoo_mpesa/static/src/scss/mpesa.scss"/>
+                        <script src="/odoo_mpesa/static/src/js/mpayment.js"/>
+                </xpath>
+        </template>
+
+</odoo>

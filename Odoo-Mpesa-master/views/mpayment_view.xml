@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--   mpesa record tree view-->
+    <record model="ir.ui.view" id="odoo_mpesa_record_tree_view">
+        <field name="name">odoo_mpesa.record.tree</field>
+        <field name="model">odoo_mpesa.record</field>
+        <field name="arch" type="xml">
+            <tree string="Mpesa Transactions Record">
+                <field name="transaction_id"/>
+                <field name="phone_number"/>
+                <field name="customer"/>
+                <field name="type"/>
+                <field name="reference"/>
+                <field name="create_date"/>
+                <field name="shortcode"/>
+                <field name="amount"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- mpesa record form view -->
+    <record id="odoo_mpesa_record_form_view" model="ir.ui.view">
+        <field name="name">odoo_mpesa.record.form</field>
+        <field name="model">odoo_mpesa.record</field>
+        <field name="arch" type="xml">
+            <form string="Mpesa Transaction Form">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="transaction_id"/>
+                            <field name="phone_number"/>
+                            <field name="customer"/>
+                            <field name="type"/>
+                        </group>
+                        <group>
+                            <field name="reference"/>
+                            <field name="create_date"/>
+                            <field name="shortcode"/>
+                            <field name="amount"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!--   paybill/till configuration treee view-->
+    <record model="ir.ui.view" id="odoo_mpesa_configuration_tree_view">
+        <field name="name">odoo_mpesa.configuration.tree</field>
+        <field name="model">odoo_mpesa.configuration</field>
+        <field name="arch" type="xml">
+            <tree string="Registered Shortcodes">
+                <field name="shortcode"/>
+                <field name="type"/>
+                <field name="active"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- paybill/till configuration form view -->
+    <record id="odoo_mpesa_configuration_form_view" model="ir.ui.view">
+        <field name="name">odoo_mpesa.configuration.form</field>
+        <field name="model">odoo_mpesa.configuration</field>
+        <field name="arch" type="xml">
+            <form string="Mpesa Shortcode Configuration Form">
+                <sheet>
+                    <group>
+                        <field name="shortcode" force_save="1"/>
+                        <field name="type"/>
+                        <field name="initiator"/>
+                        <field name="security_credential" password="True"/>
+                        <field name="pass_key" password="True"/>
+                        <field name="consumer_key" password="True"/>
+                        <field name="consumer_secret" password="True"/>
+                        <field name="active"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!--    action of the pament records menu-->
+    <record model="ir.actions.act_window" id="action_odoo_mpesa_record">
+        <field name="name">Mpesa Transactions</field>
+        <field name="res_model">odoo_mpesa.record</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                No Mpesa transactions have been recorded
+            </p><p>
+            All your Mpesa transactions such payments received from customers, reversal, etc will appear here.
+        </p>
+        </field>
+    </record>
+
+    <!--    action of the configuration menu-->
+    <record model="ir.actions.act_window" id="action_odoo_mpesa_configuration">
+        <field name="name">Configuration</field>
+        <field name="res_model">odoo_mpesa.configuration</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p>Inorder use mpesa as one of your payment methods, you need to configure your mpesa credentials. </p>
+            <p>Click on the create button above to add a new configuration</p>
+        </field>
+    </record>
+
+    <menuitem id="odoo_mpesa_root"
+              name="Odoo Mpesa"
+              sequence="4"
+              web_icon="mpesa_paybill,assets/description/icon.png" />
+
+    <menuitem id="odoo_mpesa_record"
+              name="Mpesa Payments"
+              action="action_odoo_mpesa_record"
+              sequence="10"
+              parent="odoo_mpesa_root" />
+
+    <menuitem id="odoo_mpesa_configuration"
+              name="Configuration"
+              action="action_odoo_mpesa_configuration"
+              sequence="11"
+              parent="odoo_mpesa_root" />
+
+</odoo>
