@@ -133,3 +133,23 @@ class ApprovalLine(models.Model):
     move_id = fields.Many2one('account.move')
     approver_id = fields.Many2one('res.users', string='Approver')
     approval_status = fields.Boolean(string='Status')
+    
+    
+class AccountMoveReversal(models.TransientModel):
+    _inherit = 'account.move.reversal'
+
+    def _prepare_default_reversal(self, move):
+        moves = self.env['account.move'].browse(self.env.context['active_ids']) if self.env.context.get(
+            'active_model') == 'account.move' else self.move_id
+
+        reversal_vals = super()._prepare_default_reversal(moves)
+        approval_ids = []
+        cust_credit_approver_ids = self.env['invoice.approval'].search(
+            []).mapped('cust_credit_approver_ids')
+
+        for ids in cust_credit_approver_ids:
+            val = {'approver_id': ids.id}
+            approval_ids.append((0, 0, val))
+
+        reversal_vals['approval_ids'] = approval_ids
+        return reversal_vals

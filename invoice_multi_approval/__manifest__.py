@@ -31,7 +31,7 @@
     'company': 'Cybrosys Techno Solutions',
     'maintainer': 'Cybrosys Techno Solutions',
     'website': "https://www.cybrosys.com",
-    'depends': ['account'],
+    'depends': ['account', 'sale'],
     'data': [
         'data/data.xml',
         'security/groups.xml',
