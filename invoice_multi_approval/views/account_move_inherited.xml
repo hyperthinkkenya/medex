@@ -16,11 +16,16 @@
                         string="Approve" type="object" groups="invoice_multi_approval.group_approver,invoice_multi_approval.group_approve_manager"
                         attrs="{'invisible': ['|','|','|',('check_approve_ability', '!=', True),('document_fully_approved', '=', True),('is_approved','=',True),('type','not in',('in_invoice','out_invoice','in_refund','out_refund'))]}"/>
             </xpath>
-            <xpath expr="//button[@name='action_post']" position="attributes">
+<!--             <xpath expr="//button[@name='action_post']" position="attributes">
                 <attribute name="attrs">{'invisible': ['|',('document_fully_approved', '!=',
                     True),('state','=','posted')]}
                 </attribute>
+            </xpath> -->
+            <xpath expr="//button[@name='action_post']" position="replace">
+                <button type="object" class="oe_highlight" string="Post" name="action_post" groups="invoice_multi_approval.group_approver,invoice_multi_approval.group_approve_manager" attrs="{'invisible': ['|',('document_fully_approved', '!=',True),('state','=','posted')]}" />
             </xpath>
+
+            
             <xpath expr="//page[@id='other_tab']" position="after">
                 <page string="Approvals" name="approval_tab"
                       attrs="{'invisible': ['|',('type','not in',('in_invoice','out_invoice','in_refund','out_refund')),('page_visibility','=',False)]}">
