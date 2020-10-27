@@ -1,0 +1,4 @@
+[submodule "odoo_mpesa"]
+	path = odoo_mpesa
+	url = git@github.com:johngaitho05/odoo_mpesa.git
+	branch = master
